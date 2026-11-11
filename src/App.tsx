@@ -1,34 +1,35 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { AppointmentList } from './components/AppointmentList'
+import { Logo } from './components/Logo'
+import { ScheduleSidebar } from './components/ScheduleSidebar'
+import type { Appointment, NewAppointment } from './types/appointment'
+import { todayISO } from './utils/appointments'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [appointments, setAppointments] = useState<Appointment[]>([])
+  const [agendaDate, setAgendaDate] = useState(todayISO())
+
+  function addAppointment(newAppointment: NewAppointment) {
+    const appointment: Appointment = { id: crypto.randomUUID(), ...newAppointment }
+    setAppointments((current) => [...current, appointment]) // new array, no mutation
+    setAgendaDate(newAppointment.date) // show the day that was just scheduled
+  }
+
+  function deleteAppointment(id: string) {
+    setAppointments((current) => current.filter((appointment) => appointment.id !== id))
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="app">
+      <Logo />
+      <ScheduleSidebar appointments={appointments} initialDate={todayISO()} onAdd={addAppointment} />
+      <AppointmentList
+        appointments={appointments}
+        date={agendaDate}
+        onDateChange={setAgendaDate}
+        onDelete={deleteAppointment}
+      />
+    </div>
   )
 }
 

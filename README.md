@@ -29,5 +29,8 @@ Outros scripts: `npm run build` e `npm run lint`.
 ## Capturas de tela
 ![Desktop](docs/screenshots/desktop.jpg) ![Mobile](docs/screenshots/mobile.jpg)
 
+## Evidências MCP
+- Playwright MCP: roteiro de testes e capturas em [docs/evidence/playwright.md](docs/evidence/playwright.md).
+
 ## Testes
 Validados manualmente no navegador (cadastro, validação, exclusão, troca de data, estados vazios, mobile, console sem erros).

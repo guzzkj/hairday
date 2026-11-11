@@ -30,6 +30,7 @@ Outros scripts: `npm run build` e `npm run lint`.
 ![Desktop](docs/screenshots/desktop.jpg) ![Mobile](docs/screenshots/mobile.jpg)
 
 ## Evidências MCP
+- Context7 MCP: consulta da documentação de `useState` e `Array.prototype.reduce` em [docs/evidence/context7.md](docs/evidence/context7.md).
 - Playwright MCP: roteiro de testes e capturas em [docs/evidence/playwright.md](docs/evidence/playwright.md).
 
 ## Testes
